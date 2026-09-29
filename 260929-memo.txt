@@ -1,0 +1,16 @@
+###ローカル環境下でのモックアップ起動
+
+・ai studioでモックアップを生成
+・ai studioで生成したモックアップをDL
+・ローカル環境下でNode.js で起動
+
+
+C:\Users\user\Downloads\01-get_Total-net-assets\mockup>npm install --legacy-peer-deps
+C:\Users\user\Downloads\01-get_Total-net-assets\mockup>npm run dev
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: http://192.168.3.8:3000/  Wi-Fi
+  ➜  press h + enter to show help
+バッチ ジョブを終了しますか (Y/N)? y
+
+C:\Users\user\Downloads\01-get_Total-net-assets\mockup>

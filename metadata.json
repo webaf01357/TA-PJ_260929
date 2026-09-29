@@ -1,0 +1,6 @@
+{
+  "name": "旅行顧客DX・AI旅行提案システム 構成図＆Webモックアップ",
+  "description": "LINE公式アカウント・LIFF・Cloudflare・旅行DB(D1)・AI/RAGを連携した「旅行顧客DX・AI旅行提案システム」のシステム全体構成図、データ循環モデル、および松・竹・梅AI旅行診断LIFFモックアップ。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
