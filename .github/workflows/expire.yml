@@ -16,8 +16,10 @@ jobs:
           echo "API Response:"
           echo "$RESPONSE"
           
-          # ステータスコードが 200 (成功) でない場合はエラーにして落とす
-          if [[ "$RESPONSE" != *"HTTP_STATUS:200"* ]]; then
+          # Vercel APIの削除成功ステータス（204 または 200）をチェック
+          if [[ "$RESPONSE" == *"HTTP_STATUS:204"* ]] || [[ "$RESPONSE" == *"HTTP_STATUS:200"* ]]; then
+            echo "Successfully deleted project from Vercel."
+          else
             echo "Failed to delete project on Vercel."
             exit 1
           fi
