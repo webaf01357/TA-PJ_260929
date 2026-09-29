@@ -1,7 +1,7 @@
 name: Auto Delete Vercel Project
 
 on:
-  workflow_dispatch: # è“®Às—pƒgƒŠƒK[iƒeƒXƒg—pj
+  workflow_dispatch:
 
 jobs:
   delete-vercel-project:
@@ -9,5 +9,15 @@ jobs:
     steps:
       - name: Delete Project from Vercel
         run: |
-          curl -X DELETE "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_PROJECT_ID }}" \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X DELETE \
+            "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_PROJECT_ID }}" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}")
+          
+          echo "API Response:"
+          echo "$RESPONSE"
+          
+          # ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ãŒ 200 (æˆåŠŸ) ã§ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã«ã—ã¦è½ã¨ã™
+          if [[ "$RESPONSE" != *"HTTP_STATUS:200"* ]]; then
+            echo "Failed to delete project on Vercel."
+            exit 1
+          fi
