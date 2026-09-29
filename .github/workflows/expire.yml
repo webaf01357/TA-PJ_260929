@@ -1,0 +1,17 @@
+name: Auto Take Down (Expire App)
+
+on:
+  # 例：2026年10月5日 00:00 (UTC) に自動削除実行
+  schedule:
+    - cron: '0 0 5 10 *' 
+  # 任意タイミングで手動削除も可能にする設定
+  workflow_dispatch:
+
+jobs:
+  delete-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Project from Vercel
+        run: |
+          curl -X DELETE "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_PROJECT_ID }}" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
